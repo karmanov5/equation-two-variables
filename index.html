@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уравнение с двумя переменными и его график</title>
+    <meta name="description" content="Интерактивный урок алгебры для 8 класса. Уравнения с двумя переменными и их графики: прямая, парабола, гипербола.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- MathJax config -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- d3.js and Function Plot -->
+    <script src="https://unpkg.com/d3@7" defer></script>
+    <script src="https://unpkg.com/function-plot@1.23.1/dist/function-plot.js" defer></script>
+    <!-- Custom Script -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="hero">
+        <div class="container hero-content">
+            <span class="badge">Алгебра 8 класс</span>
+            <h1>Уравнение с двумя переменными</h1>
+            <p>И его график. Просто, наглядно и понятно!</p>
+            <a href="#theory" class="btn">Изучить тему</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="theory" class="section">
+            <div class="container">
+                <h2 class="section-title">Что такое уравнение с двумя переменными?</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🤔</div>
+                        <h3>Две неизвестные</h3>
+                        <p>Раньше вы решали уравнения, в которых пряталась только одна неизвестная буква — например, $x$. Теперь «секретных» букв будет сразу две: $x$ и $y$.</p>
+                        <p class="example-math">Пример: $x^2 - y^2 = 6$ или $5x^3 + y^2 = 9$</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💡</div>
+                        <h3>Что значит решить?</h3>
+                        <div class="write-it-down">
+                            <p><strong>Решением уравнения с двумя переменными</strong> называется пара чисел (значение $x$ и значение $y$), обращающая это уравнение в верное равенство.</p>
+                        </div>
+                        <p><em>Самое интересное:</em> у таких уравнений обычно бесконечно много решений!</p>
+                    </div>
+                </div>
+
+                <div class="theory-block card mt-2">
+                    <h3>Что такое график уравнения?</h3>
+                    <p>Представьте, что мы нашли все-все пары чисел, которые подходят к нашему уравнению. Каждую пару $(x; y)$ мы можем отметить как точку на координатной плоскости. Если мы поставим все эти точки, они сольются в какую-нибудь красивую линию.</p>
+                    <div class="write-it-down">
+                        <p>Множество всех таких точек, координаты которых являются решениями этого уравнения, называется <strong>графиком уравнения</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="graphs" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Какие бывают графики?</h2>
+                <p class="section-subtitle">Вы уже рисовали некоторые из них. Давайте посмотрим, как они выглядят!</p>
+                
+                <div class="graph-grid">
+                    <!-- Graph 1 -->
+                    <div class="graph-card">
+                        <div class="graph-header">
+                            <h3>Линейное уравнение</h3>
+                            <div class="write-it-down" style="padding: 10px 15px; margin: 10px 0; font-size: 0.95rem;">
+                                <p class="math" style="margin: 0;">$x + y = 5$</p>
+                                <p style="margin: 0;">График — <strong>прямая линия</strong></p>
+                            </div>
+                        </div>
+                        <div id="plot-linear" class="plot-container"></div>
+                    </div>
+
+                    <!-- Graph 2 -->
+                    <div class="graph-card">
+                        <div class="graph-header">
+                            <h3>Парабола</h3>
+                            <div class="write-it-down" style="padding: 10px 15px; margin: 10px 0; font-size: 0.95rem;">
+                                <p class="math" style="margin: 0;">$y = x^2$</p>
+                                <p style="margin: 0;">График — <strong>парабола</strong></p>
+                            </div>
+                        </div>
+                        <div id="plot-parabola" class="plot-container"></div>
+                    </div>
+
+                    <!-- Graph 3 -->
+                    <div class="graph-card">
+                        <div class="graph-header">
+                            <h3>Окружность</h3>
+                            <div class="write-it-down" style="padding: 10px 15px; margin: 10px 0; font-size: 0.95rem;">
+                                <p class="math" style="margin: 0;">$x^2 + y^2 = 10$</p>
+                                <p style="margin: 0;">График — <strong>окружность</strong></p>
+                            </div>
+                        </div>
+                        <div id="plot-circle" class="plot-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="section">
+            <div class="container">
+                <h2 class="section-title">Решаем вместе</h2>
+                <div class="example-grid">
+                    
+                    <div class="example-card">
+                        <div class="example-number">Пример 1</div>
+                        <h3>Как проверить, подходит ли решение?</h3>
+                        <p><strong>Задание:</strong> Является ли пара чисел $(-1; 3)$ решением уравнения $x^2 - y + 2 = 0$?</p>
+                        <div class="solution">
+                            <h4>Решение:</h4>
+                            <p>В записи $(-1; 3)$ на первом месте всегда стоит координата $x$, а на втором — $y$. То есть $x = -1$, а $y = 3$. Давайте подставим их в наше уравнение:</p>
+                            <div class="math-block">
+                                $(-1)^2 - 3 + 2 = 0$<br>
+                                $1 - 3 + 2 = 0$<br>
+                                $0 = 0$
+                            </div>
+                            <p>Равенство получилось верным!</p>
+                            <p class="answer"><strong>Ответ:</strong> Да, эта пара чисел — решение уравнения.</p>
+                        </div>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-number">Пример 2</div>
+                        <h3>Как самому найти решение?</h3>
+                        <p><strong>Задание:</strong> Найдите какое-нибудь решение уравнения $x - 2y = 8$.</p>
+                        <div class="solution">
+                            <h4>Решение:</h4>
+                            <p>Так как решений бесконечно много, мы можем схитрить: придумать абсолютно любое число для одной переменной, а вторую просто вычислить!</p>
+                            <p>Давайте возьмем $y = 0$. Подставляем ноль в уравнение:</p>
+                            <div class="math-block">
+                                $x - 2 \cdot 0 = 8$<br>
+                                $x - 0 = 8$<br>
+                                $x = 8$
+                            </div>
+                            <p>Мы получили пару чисел: $x = 8$ и $y = 0$.</p>
+                            <p class="answer"><strong>Ответ:</strong> $(8; 0)$ — это одно из решений. (Попробуйте подставить $y = 1$ и найти еще одну пару!)</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="exercises" class="section bg-accent">
+            <div class="container">
+                <div class="exercises-box">
+                    <h2 class="section-title text-white">Время попрактиковаться!</h2>
+                    <p class="section-subtitle text-white">Задания для самостоятельной работы</p>
+                    
+                    <div class="task-list">
+                        <div class="task-item">
+                            <div class="task-icon">✏️</div>
+                            <div class="task-content">
+                                <h3>Задание 1</h3>
+                                <p>Является ли пара чисел $(-1; 3)$ решением уравнения:</p>
+                                <ul class="math-list">
+                                    <li>а) $xy + y = 6$;</li>
+                                    <li>б) $x^2 + y^2 = 10$?</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="task-item">
+                            <div class="task-icon">🚀</div>
+                            <div class="task-content">
+                                <h3>Задание 2</h3>
+                                <p>Найдите любые три (на ваш выбор) решения уравнения:</p>
+                                <ul class="math-list">
+                                    <li>а) $x - 2y = 8$;</li>
+                                    <li>б) $x + 0 \cdot y = 10$.</li>
+                                </ul>
+                                <details class="hint">
+                                    <summary>Подсказка к заданию 2б</summary>
+                                    <p>Это задание с подвохом! Так как $y$ умножается на ноль, $x$ всегда будет равен 10, а $y$ может быть абсолютно любым числом, например: $(10; 1), (10; 100), (10; -5)$.</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="https://max.ru/file_uploads_bot?startapp=baa80cd6-192a-4e2b-b542-45063f50929c" target="_blank" class="btn" style="background-color: var(--white); color: var(--primary);">Сдать домашнее задание</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Урок Алгебры | 8 класс</p>
+        </div>
+    </footer>
+</body>
+</html>
